@@ -50,6 +50,13 @@ namespace PasswordPics.web.Controllers
             ImageRepository ir = new ImageRepository(_connectionString);
             SubmitViewModel svm = new SubmitViewModel { Image = ir.GetByID(id) };
 
+            string wasHere = Request.Cookies["allow-in"];
+            svm.AllowIn = wasHere != null;
+
+            Response.Cookies.Append("allow-in", "yes i was here before therefore you can allow me in now");
+
+            //here starts my practicing session and cookies
+
             //------session----------
 
             int? number = HttpContext.Session.GetInt32("number");

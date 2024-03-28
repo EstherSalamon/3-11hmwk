@@ -8,5 +8,6 @@ namespace PasswordPics.web.Models
         public int? CookieCount { get; set; }
         public int? SessionCount { get; set; }
         public int? StaticCount { get; set; }
+        public bool AllowIn { get; set; }
     }
 }
