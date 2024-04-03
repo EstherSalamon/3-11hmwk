@@ -26,15 +26,18 @@ namespace PasswordPics.web.Controllers
         public IActionResult Submit(IFormFile image, string password)
         {
             ImageRepository ir = new ImageRepository(_connectionString);
+            string path = Path.Combine(_webHostEnvironment.WebRootPath, "Uploads", image.FileName);
 
             Image here = new Image
             {
                 ImageTitle = image.FileName,
                 Password = password,
-                ImagePath = Path.Combine(_webHostEnvironment.WebRootPath, "Uploads", image.FileName)
+                ImagePath = path
             };
 
-            using FileStream fs = new FileStream(here.ImagePath, FileMode.Create);
+            using FileStream fs = new FileStream(here.ImagePath, FileMode.Create); //i think this is where i went wrong. i only had filemode.create. check it and see if it works now.
+            //jokes on me! this version worked! copied it for my later one. my issue was in the src, cuz my imageTitle was wrong - only had name in there, not .jpg or whatev. pt being,
+            //you need to use the .fileName for it to work, so have both a path and a title in your image. ha!
             image.CopyTo(fs);
 
             int id = ir.Add(here);

@@ -9,15 +9,14 @@
 
 <div class="row mt-5">
     <div class="col-md-6 offset-3">
-        <img src="@Model.Image.ImagePath" />
+        @* <img src="@Model.Image.ImagePath" />
+ *@        <img src="/Uploads/@Model.Image.ImageTitle" width="500"/>
         <h4>password being: @Model.Image.Password</h4>
         <h6>@Model.Image.ImagePath</h6>
     @*     <h2>Session counter: @Model.SessionCount</h2>
         <h2>Cookie counter: @Model.CookieCount</h2>
         <h2>Static counter: @Model.StaticCount</h2> *@
         <h1>Views: @Model.StaticCount</h1>
-
-        @Model.AllowIn ? <h1>Welcome!</h1> : <h1>Get lost!</h1>
 
         @if(Model.AllowIn)
         {
